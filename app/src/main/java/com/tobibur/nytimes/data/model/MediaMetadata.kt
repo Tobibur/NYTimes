@@ -1,4 +1,4 @@
-package com.tobibur.nytimes.model
+package com.tobibur.nytimes.data.model
 
 
 import com.google.gson.annotations.SerializedName

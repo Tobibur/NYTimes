@@ -1,9 +1,9 @@
-package com.tobibur.nytimes.model
+package com.tobibur.nytimes.data.model
 
 
 import com.google.gson.annotations.SerializedName
 
-data class MostPopular(
+data class MostPopularArticles(
     @SerializedName("copyright")
     val copyright: String,
     @SerializedName("num_results")
