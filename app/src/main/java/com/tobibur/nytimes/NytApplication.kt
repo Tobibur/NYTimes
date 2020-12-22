@@ -1,7 +1,9 @@
 package com.tobibur.nytimes
 
 import android.app.Application
+import com.tobibur.nytimes.di.dataModule
 import com.tobibur.nytimes.di.networkModule
+import com.tobibur.nytimes.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -15,7 +17,7 @@ class NytApplication: Application() {
             // declare used Android context
             androidContext(this@NytApplication)
             // declare modules
-            modules(listOf(networkModule))
+            modules(listOf(networkModule, dataModule, viewModelModule))
         }
     }
 }

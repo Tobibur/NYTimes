@@ -21,7 +21,13 @@ class ArticlesRecyclerAdapter(private val results: List<Result>)
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
         val result = results[position]
         holder.itemView.apply {
-            img_article.load(result.media.first().mediaMetadata.first().url, context)
+            if(result.media.isNotEmpty()){
+                val media = result.media.first()
+                if(media.mediaMetadata.isNotEmpty()){
+                    img_article.load(media.mediaMetadata.first().url, context)
+                }
+            }
+
             txt_title.text = result.title
             txt_author.text = result.byline
             txt_date.text = result.publishedDate
