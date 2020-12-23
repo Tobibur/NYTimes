@@ -1,4 +1,4 @@
-package com.tobibur.nytimes.view
+package com.tobibur.nytimes.view.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tobibur.nytimes.R
+import com.tobibur.nytimes.data.model.Result
 import com.tobibur.nytimes.data.network.Outcome
 import com.tobibur.nytimes.utils.toast
 import kotlinx.android.synthetic.main.home_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -49,7 +51,7 @@ class HomeFragment : Fragment() {
                 is Outcome.Success -> {
                     progress_loader.visibility = View.GONE
                     val articles = outcome.data.results
-                    recycler_articles.adapter = ArticlesRecyclerAdapter(articles)
+                    recycler_articles.adapter = ArticlesRecyclerAdapter(articles, this)
                 }
                 is Outcome.Failure -> {
                     progress_loader.visibility = View.GONE
@@ -61,6 +63,11 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onClick(p0: View) {
+        val result = p0.tag as Result
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(result))
     }
 
 }

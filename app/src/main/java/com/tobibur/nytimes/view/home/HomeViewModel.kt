@@ -1,4 +1,4 @@
-package com.tobibur.nytimes.view
+package com.tobibur.nytimes.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -1,7 +1,9 @@
 package com.tobibur.nytimes.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Result(
     @SerializedName("abstract")
@@ -48,4 +50,4 @@ data class Result(
     val uri: String,
     @SerializedName("url")
     val url: String
-)
+): Serializable

@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.tobibur.nytimes.view.HomeFragment"
+        android:name="com.tobibur.nytimes.view.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.tobibur.nytimes.view.detail.DetailFragment"
+        android:label="detail_fragment"
+        tools:layout="@layout/detail_fragment" >
+        <argument
+            android:name="result"
+            app:argType="com.tobibur.nytimes.data.model.Result" />
+    </fragment>
 </navigation>
