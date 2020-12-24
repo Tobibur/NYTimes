@@ -33,10 +33,13 @@ class DetailFragment : Fragment() {
 
         val result = args.result
 
-        if (result.media.isNotEmpty()) {
-            val media = result.media.first()
-            if (media.mediaMetadata.isNotEmpty()) {
-                img_detail.load(media.mediaMetadata[2].url, requireContext())
+        if (result.media != null) {
+            if (result.media.isNotEmpty()) {
+                val media = result.media?.first()
+                if (media.mediaMetadata.isNotEmpty()) {
+
+                    img_detail.load(media.mediaMetadata[2].url, requireContext())
+                }
             }
         }
 

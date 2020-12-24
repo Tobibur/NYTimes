@@ -4,8 +4,6 @@ package com.tobibur.nytimes.data.model
 import com.google.gson.annotations.SerializedName
 
 data class MostPopularArticles(
-    @SerializedName("copyright")
-    val copyright: String,
     @SerializedName("num_results")
     val numResults: Int,
     @SerializedName("results")

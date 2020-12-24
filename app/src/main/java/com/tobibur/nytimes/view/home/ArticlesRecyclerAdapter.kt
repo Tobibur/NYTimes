@@ -23,10 +23,12 @@ class ArticlesRecyclerAdapter(
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
         val result = results[position]
         holder.itemView.apply {
-            if (result.media.isNotEmpty()) {
-                val media = result.media.first()
-                if (media.mediaMetadata.isNotEmpty()) {
-                    img_article.load(media.mediaMetadata.first().url, context)
+            if (result.media != null) {
+                if (result.media.isNotEmpty()) {
+                    val media = result.media.first()
+                    if (media.mediaMetadata.isNotEmpty()) {
+                        img_article.load(media.mediaMetadata.first().url, context)
+                    }
                 }
             }
 

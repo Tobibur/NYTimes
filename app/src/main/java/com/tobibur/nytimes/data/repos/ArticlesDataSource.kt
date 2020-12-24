@@ -6,18 +6,17 @@ import com.tobibur.nytimes.data.model.MostPopularArticles
 import com.tobibur.nytimes.data.network.ApiService
 import com.tobibur.nytimes.data.network.Outcome
 
-class ArticlesDataSource(private val apiService: ApiService) {
+class ArticlesDataSource(private val apiService: ApiService): DefaultArticlesDataSource {
 
-    private val _articleResponse = MutableLiveData<Outcome<MostPopularArticles>>()
-    val articleResponse: LiveData<Outcome<MostPopularArticles>>
-        get() = _articleResponse
 
-    suspend fun fetchArticles(period: Int) {
+    override suspend fun fetchArticles(period: Int): Outcome<MostPopularArticles> {
+        val articleResponse = MutableLiveData<Outcome<MostPopularArticles>>()
         try {
             val articles = apiService.getMostPopularArticles(period)
-            _articleResponse.value = Outcome.success(articles)
+            articleResponse.value = Outcome.success(articles)
         } catch (e: Exception) {
-            _articleResponse.value = Outcome.failure(e)
+            articleResponse.value = Outcome.failure(e)
         }
+        return articleResponse.value as Outcome<MostPopularArticles>
     }
 }
